@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">  
   <modelVersion>4.0.0</modelVersion>  
   <parent> 
@@ -73,28 +74,28 @@
           </excludes> 
         </configuration> 
       </plugin>  
-        <plugin>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>azure-webapp-maven-plugin</artifactId>
-            <version>2.13.0</version>
-            <configuration>
-                <resourceGroup>rg-trainee-zef987-10_rg</resourceGroup>
-                <appName>az204wb10</appName>
-                <pricingTier>P1v3</pricingTier>
-                <region>francecentral</region>
-                <runtime/>
-                <deployment>
-                    <resources>
-                        <resource>
-                            <directory>/workspaces/azure-developer-like/form/target</directory>
-                            <includes>
-                                <include>*.jar</include>
-                            </includes>
-                        </resource>
-                    </resources>
-                </deployment>
-            </configuration>
-        </plugin>
+      <plugin> 
+        <groupId>com.microsoft.azure</groupId>  
+        <artifactId>azure-webapp-maven-plugin</artifactId>  
+        <version>2.13.0</version>  
+        <configuration> 
+          <resourceGroup>rg-trainee-m8irw2-10_rg</resourceGroup>  
+          <appName>wb10</appName>  
+          <pricingTier>P1v3</pricingTier>  
+          <region>francecentral</region>  
+          <runtime/>  
+          <deployment> 
+            <resources> 
+              <resource> 
+                <directory>/workspaces/azure-developer-like/form/target</directory>  
+                <includes> 
+                  <include>*.jar</include> 
+                </includes> 
+              </resource> 
+            </resources> 
+          </deployment> 
+        </configuration> 
+      </plugin> 
     </plugins> 
   </build> 
 	<dependencyManagement>
