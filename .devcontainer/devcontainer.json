@@ -25,7 +25,7 @@
 	"remoteUser": "vscode",
 	"features": {
 		// Azure CLI with specific version
-		"ghcr. io/devcontainers/features/azure-cli:1": {
+		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"version": "latest",
 			"extensions": "azure-devops"
 		},
@@ -42,7 +42,7 @@
 		"ghcr.io/devcontainers/features/github-cli:1": {},
 		
 		// Kubernetes tools
-		"ghcr. io/devcontainers/features/kubectl-helm-minikube:1": {},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
 		
 		// PowerShell with configuration
 		"ghcr.io/devcontainers/features/powershell:1": {
