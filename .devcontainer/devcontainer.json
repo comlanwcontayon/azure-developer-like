@@ -3,15 +3,13 @@
 	"dockerFile": "Dockerfile",
 	"forwardPorts": [ 7071 ],
 
-	// Configure tool-specific properties.
 	"customizations": {
-		// Configure properties specific to VS Code.
 		"vscode": {
-			// Set *default* container specific settings.json values on container create.
 			"settings": { 
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"azure.tenant": ""
 			},
 			
-			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-azuretools.vscode-azurefunctions",
 				"vscjava.vscode-java-pack",
@@ -21,25 +19,60 @@
 		}
 	},
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "java -version",
+	// Run commands after container creation
+	"postCreateCommand": "java -version && az version && pwsh -Version",
 
-	// Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
 	"features": {
-		"ghcr.io/devcontainers/features/azure-cli:1": {},
-		"ghcr.io/devcontainers/features/docker-from-docker:1": {},
-		"ghcr.io/devcontainers/features/docker-in-docker:1": {},
+		// Azure CLI with specific version
+		"ghcr. io/devcontainers/features/azure-cli:1": {
+			"version": "latest",
+			"extensions": "azure-devops"
+		},
+		
+		// Use ONLY docker-from-docker (remove docker-in-docker)
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {
+			"version": "latest",
+			"moby": true
+		},
+		
+		// Git tools
 		"ghcr.io/devcontainers/features/git:1": {},
 		"ghcr.io/devcontainers/features/git-lfs:1": {},
 		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
-		"ghcr.io/devcontainers/features/powershell:1": {},
+		
+		// Kubernetes tools
+		"ghcr. io/devcontainers/features/kubectl-helm-minikube:1": {},
+		
+		// PowerShell with configuration
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest"
+		},
+		
+		// Infrastructure as Code
 		"ghcr.io/devcontainers/features/terraform:1": {},
-		"ghcr.io/rocker-org/devcontainer-features/pandoc:1": {},
 		"ghcr.io/dhoeric/features/terraform-docs:1": {},
 		"ghcr.io/dhoeric/features/tfsec:1": {},
-		"ghcr.io/devcontainers/features/node:1":{},
-		"ghcr.io/devcontainers-contrib/features/npm-package:1": {} 
-	}
+		
+		// Documentation
+		"ghcr.io/rocker-org/devcontainer-features/pandoc:1": {},
+		
+		// Node.js for Azure Functions
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "lts"
+		},
+		"ghcr.io/devcontainers-contrib/features/npm-package:1": {
+			"package": "azure-functions-core-tools@4"
+		}
+	},
+	
+	// Environment variables for Azure
+	"remoteEnv": {
+		"AZURE_CONFIG_DIR": "/home/vscode/.azure"
+	},
+	
+	// Mount Azure config for persistence
+	"mounts": [
+		"source=${localEnv:HOME}/.azure,target=/home/vscode/.azure,type=bind,consistency=cached"
+	]
 }
